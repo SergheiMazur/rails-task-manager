@@ -1,0 +1,19 @@
+
+<div>
+  <h2><%= link_to("Create new task", tasks_new_path) %></h2>
+</div>
+<% @tasks.each do |task| %>
+  <div style="background-color: lightgray;">
+    <hr>
+    <h2><%= task.title %></h2>
+    <p><%= task.details %></p>
+    <p><%= task.completed == true ? 'checked': '' %></p>
+    <%= check_box_tag "completed", "completed", task.completed == true, disabled: true %> completed<br>
+    <hr>
+    <%= link_to("See details", task_path(task)) %>
+    <%= link_to 'Update task', edit_task_path(task) %>
+    <%= link_to 'Delete task', task_path(task), method: :delete, data: {confirm: "Are you sure?"} %>
+
+  </div>
+<% end %>
+
